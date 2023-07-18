@@ -8,6 +8,10 @@ const config = {
 initialMessages: [
     createChatBotMessage("Hi, I'm here to help.")
   ],
+  state: {
+    userName: "",
+    continueConversation: false
+  },
   widgets: [
       {
         widgetName: "loanLinks",
@@ -37,6 +41,7 @@ initialMessages: [
       {
         widgetName: "loginWidget",
         widgetFunc: (props) => <Login {...props} />,
+        mapStateToProps: ['userName', 'continueConversation']
       }
  ],
 }
