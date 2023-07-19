@@ -29,6 +29,13 @@ class ActionProvider {
         this.updateChatbotState(message);
     }
 
+    continueConversation(name) {
+        this.stateRef.userName = name
+        this.stateRef.continueConversation = true
+        const message = this.createChatBotMessage(`Hello, ${name}! How can i help you?`)
+        this.updateChatbotState(message);
+    }
+
     goodBye(state) {
         const goodByeMessage = this.createChatBotMessage("Goodbye!")
 
@@ -47,12 +54,14 @@ class ActionProvider {
     }
 
     loanOptions() {
-        const message = this.createChatBotMessage("Do you need help with loans? Here is some links that may help:",
-            {
-                widget: "loanLinks",
-            }
-        );
-        this.updateChatbotState(message);
+        if (this.stateRef.continueConversation) {
+            const message = this.createChatBotMessage("Do you need help with loans? Here is some links that may help:",
+                {
+                    widget: "loanLinks",
+                }
+            );
+            this.updateChatbotState(message);
+        }
     };
 
     updateChatbotState(message) {
