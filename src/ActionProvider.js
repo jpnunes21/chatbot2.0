@@ -14,14 +14,12 @@ class ActionProvider {
         this.createCustomMessage = createCustomMessage;
     }
 
-    greet() {
-        const greetingMessage = this.createChatBotMessage("Please, tell me your username.")
-        this.updateChatbotState(greetingMessage)
-        this.getUserNameAndPassword()
+    state = {
+        conversation: false,
     }
 
     getUserNameAndPassword() {
-        const message = this.createChatBotMessage("User:",
+        const message = this.createChatBotMessage("Please, tell me your username and password:",
             {
                 widget: "loginWidget",
             }
@@ -30,10 +28,12 @@ class ActionProvider {
     }
 
     continueConversation(name) {
-        this.stateRef.userName = name
-        this.stateRef.continueConversation = true
         const message = this.createChatBotMessage(`Hello, ${name}! How can i help you?`)
-        this.updateChatbotState(message);
+        this.setState(prevState => ({
+            ...prevState,
+            messages: [...prevState.messages, message],
+            continueConversation: true
+        }))
     }
 
     goodBye(state) {

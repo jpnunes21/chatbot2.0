@@ -9,7 +9,6 @@ initialMessages: [
     createChatBotMessage("Hi, I'm here to help.")
   ],
   state: {
-    userName: "",
     continueConversation: false
   },
   widgets: [
@@ -41,7 +40,7 @@ initialMessages: [
       {
         widgetName: "loginWidget",
         widgetFunc: (props) => <Login {...props} />,
-        mapStateToProps: ['userName', 'continueConversation']
+        mapStateToProps: ["continueConversation"]
       }
  ],
 }

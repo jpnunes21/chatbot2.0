@@ -9,7 +9,7 @@ class MessageParser {
 
         if (lowerCaseMessage.includes("hello") || lowerCaseMessage.includes("good,") || lowerCaseMessage.includes("i want"))
         {
-            this.actionProvider.greet()
+            this.actionProvider.getUserNameAndPassword()
         }
 
         if (lowerCaseMessage.includes("loan"))
